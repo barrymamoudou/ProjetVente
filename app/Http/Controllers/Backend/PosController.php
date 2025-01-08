@@ -11,25 +11,27 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PosController extends Controller
 {
-    public function Pos(){
+    public function Pos()
+    {
         $product = Product::latest()->get();
         $customer = Customer::latest()->get();
-        return view('backend.pos.pos_page',compact('product','customer'));
+        return view('backend.pos.pos_page', compact('product', 'customer'));
+    } // End Method
 
-    } // End Method 
-
-    public function AddCart(Request $request){
+    public function AddCart(Request $request)
+    {
 
         Cart::add([
-            'id' => $request->id, 
-            'name' => $request->name, 
-            'qty' => $request->qty, 
-            'price' => $request->price, 
-            'weight' => 20, 
-            'options' => ['size' => 'large']]);
+            'id' => $request->id,
+            'name' => $request->name,
+            'qty' => $request->qty,
+            'price' => $request->price,
+            'weight' => 20,
+            'options' => ['size' => 'large']
+        ]);
 
 
-         $notification = array(
+        $notification = array(
             'message' => 'Product Added Successfully',
             'alert-type' => 'success'
         );
@@ -37,29 +39,31 @@ class PosController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function AllItem(){
+    public function AllItem()
+    {
 
         $product_item = Cart::content();
 
-        return view('backend.pos.text_item',compact('product_item'));
-
+        return view('backend.pos.text_item', compact('product_item'));
     } // End Method
 
-    public function CartUpdate(Request $request,$rowId){
+    public function CartUpdate(Request $request, $rowId)
+    {
 
         $qty = $request->qty;
-        $update = Cart::update($rowId,$qty);
+        $update = Cart::update($rowId, $qty);
 
-         $notification = array(
+        $notification = array(
             'message' => 'Cart Updated Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
+    } // End Method
 
-    } // End Method 
 
-    public function CartRemove($rowId){
+    public function CartRemove($rowId)
+    {
 
         Cart::remove($rowId);
 
@@ -69,18 +73,17 @@ class PosController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    } // End Method
 
-    } // End Method 
-
-    public function CreateInvoice(Request $request){
+    public function CreateInvoice(Request $request)
+    {
 
         $contents = Cart::content();
-        
-        $custo_id=$request->customer_id;
-        
-        $customer=Customer::where('id',$custo_id)->first();
 
-        return view('backend.invoice.product_invoice',compact('contents','customer'));
-        
+        $custo_id = $request->customer_id;
+
+        $customer = Customer::where('id', $custo_id)->first();
+
+        return view('backend.invoice.product_invoice', compact('contents', 'customer'));
     }
 }

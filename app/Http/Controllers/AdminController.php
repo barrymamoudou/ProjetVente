@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -85,5 +90,11 @@ class AdminController extends Controller
         ); 
         return back()->with($notification);
     }
+
+    public function AddAdmin(){
+
+        $roles = Role::all();
+        return view('backend.admin.add_admin',compact('roles'));
+    }// End Method
 
 }

@@ -293,6 +293,30 @@
                 </ul>
             </div>
         </li>
+
+        <li>
+            <a href="#permission" data-bs-toggle="collapse">
+                <i class="mdi mdi-email-multiple-outline"></i>
+                <span> Roles And Permission    </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="permission">
+                <ul class="nav-second-level">
+                    <li>
+                        <a href="{{ route('all.permission') }}">All Permission </a>
+                    </li> 
+                    <li>
+                        <a href="{{ route('all.roles') }}">All Roles </a>
+                    </li>   
+                    <li>
+                        <a href="{{ route('add.roles.permission') }}">Add Role In Permission </a>
+                    </li>  
+                    <li>
+                        <a href="{{ route('all.roles.permission') }}">All Roles in Permission </a>
+                    </li>           
+                </ul>
+            </div>
+        </li>
         
         <!-- <li>
                 <a href="#sidebarProjects" data-bs-toggle="collapse">

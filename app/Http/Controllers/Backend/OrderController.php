@@ -47,9 +47,6 @@ class OrderController extends Controller
             $order_details->total=$value->total;                                                
             $order_details->save();
         }
-
-
-        
         $notification = array(
             'message' => 'Order Complete Successfully',
             'alert-type' => 'success'
@@ -134,11 +131,5 @@ class OrderController extends Controller
         return $pdf->download('invoice.pdf');
 
    }// End Method 
-    
-
-
-
-
- 
-    
+   
 }
